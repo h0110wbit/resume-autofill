@@ -302,6 +302,31 @@ header h1 {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+/* 单选按钮组（是 / 否） */
+.radio-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 7px;
+}
+
+.radio-group .radio-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #1f2329;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.radio-group .radio-item input[type="radio"] {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #1677ff;
+}
+
 /* 多条记录（教育/工作经历） */
 .entry-card {
   background: #fff;

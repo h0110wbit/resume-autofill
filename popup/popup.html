@@ -212,6 +212,151 @@
       </div>
     </details>
 
+    <!-- 其他信息（扩展字段） -->
+    <details class="section">
+      <summary>📋 其他信息</summary>
+      <div class="section-content">
+        <div class="field">
+          <label>籍贯（省 / 市 / 区）</label>
+          <div class="field-row field-row-3">
+            <input type="text" id="extra-nativeProvince" placeholder="省">
+            <input type="text" id="extra-nativeCity" placeholder="市">
+            <input type="text" id="extra-nativeDistrict" placeholder="区/县">
+          </div>
+        </div>
+        <div class="field">
+          <label>高考生源地（省 / 市 / 区）</label>
+          <div class="field-row field-row-3">
+            <input type="text" id="extra-gaokaoProvince" placeholder="省">
+            <input type="text" id="extra-gaokaoCity" placeholder="市">
+            <input type="text" id="extra-gaokaoDistrict" placeholder="区/县">
+          </div>
+        </div>
+        <div class="field">
+          <label>户口所在地（省 / 市 / 区）</label>
+          <div class="field-row field-row-3">
+            <input type="text" id="extra-hukouProvince" placeholder="省">
+            <input type="text" id="extra-hukouCity" placeholder="市">
+            <input type="text" id="extra-hukouDistrict" placeholder="区/县">
+          </div>
+        </div>
+        <div class="field">
+          <label>家庭住址（省 / 市 / 区）</label>
+          <div class="field-row field-row-3">
+            <input type="text" id="extra-homeProvince" placeholder="省">
+            <input type="text" id="extra-homeCity" placeholder="市">
+            <input type="text" id="extra-homeDistrict" placeholder="区/县">
+          </div>
+        </div>
+        <div class="field">
+          <label>健康状况</label>
+          <input type="text" id="extra-health" placeholder="如：健康 / 良好">
+        </div>
+      </div>
+    </details>
+
+    <!-- 学历补充信息 -->
+    <details class="section">
+      <summary>🎓 学历补充信息</summary>
+      <div class="section-content">
+        <div class="field-row">
+          <div class="field"><label>最高学历</label><input type="text" id="eduExtra-highestDegree" placeholder="如：本科 / 硕士"></div>
+          <div class="field"><label>学历类型</label><input type="text" id="eduExtra-educationType" placeholder="如：全日制 / 非全日制"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>是否主要经历</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="eduExtra-isMain" value="是">是</label>
+              <label class="radio-item"><input type="radio" name="eduExtra-isMain" value="否">否</label>
+            </div>
+          </div>
+          <div class="field"><label>是否双学位</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="eduExtra-hasDoubleDegree" value="是">是</label>
+              <label class="radio-item"><input type="radio" name="eduExtra-hasDoubleDegree" value="否">否</label>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>是否专升本</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="eduExtra-isUpgraded" value="是">是</label>
+            <label class="radio-item"><input type="radio" name="eduExtra-isUpgraded" value="否">否</label>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 高中信息 -->
+    <details class="section">
+      <summary>🏫 高中信息</summary>
+      <div class="section-content">
+        <div class="field-row">
+          <div class="field"><label>高中就读院校-省份</label>
+            <select id="highSchool-province"><option value="">请选择</option></select>
+          </div>
+          <div class="field"><label>高中就读院校-城市</label>
+            <select id="highSchool-city"><option value="">请选择</option></select>
+          </div>
+        </div>
+        <div class="field"><label>高中学校名称</label><input type="text" id="highSchool-school"></div>
+        <div class="field-row">
+          <div class="field"><label>入学时间（年月）</label><input type="month" id="highSchool-startDate"></div>
+          <div class="field"><label>毕业时间（年月）</label><input type="month" id="highSchool-endDate"></div>
+        </div>
+        <div class="field">
+          <label>是否主要经历</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="highSchool-isMain" value="是">是</label>
+            <label class="radio-item"><input type="radio" name="highSchool-isMain" value="否">否</label>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 学位与专业信息 -->
+    <details class="section">
+      <summary>📜 学位与专业信息</summary>
+      <div class="section-content">
+        <div class="field-row">
+          <div class="field"><label>学位</label><input type="text" id="degreeInfo-degree" placeholder="如：工学学士"></div>
+          <div class="field"><label>学位类型</label>
+            <select id="degreeInfo-degreeType">
+              <option value="">请选择学位类型</option>
+              <option value="已毕业">已毕业</option>
+              <option value="预计毕业">预计毕业</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>学校名称</label><input type="text" id="degreeInfo-school"></div>
+          <div class="field"><label>学校所在地</label><input type="text" id="degreeInfo-schoolLocation" placeholder="如：湖南长沙"></div>
+        </div>
+        <div class="field"><label>学院</label><input type="text" id="degreeInfo-college"></div>
+        <div class="field"><label>主修专业-一级学科</label><input type="text" id="degreeInfo-majorLevel1" placeholder="如：计算机类"></div>
+        <div class="field-row">
+          <div class="field"><label>主修专业-二级学科</label><input type="text" id="degreeInfo-majorLevel2" placeholder="如：计算机科学与技术"></div>
+          <div class="field"><label>主修专业-专业方向</label><input type="text" id="degreeInfo-majorDirection" placeholder="如：人工智能"></div>
+        </div>
+        <div class="field">
+          <label>是否是学生干部</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="degreeInfo-isStudentLeader" value="是">是</label>
+            <label class="radio-item"><input type="radio" name="degreeInfo-isStudentLeader" value="否">否</label>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 家庭成员 / 亲属 -->
+    <details class="section">
+      <summary>👪 家庭成员 / 亲属</summary>
+      <div class="section-content">
+        <div id="relative-list"></div>
+        <button class="btn-add" id="btn-add-relative">+ 添加亲属信息</button>
+      </div>
+    </details>
+
     <!-- 状态提示（自动保存 / 导入反馈） -->
     <div class="save-section">
       <div id="save-status" class="status"></div>

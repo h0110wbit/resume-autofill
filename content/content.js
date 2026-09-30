@@ -1425,9 +1425,14 @@
       chrome.storage.local.get(null, result => {
         resolve({
           basic: result.basic || {},
+          extra: result.extra || {},
+          educationExtra: result.educationExtra || {},
+          highSchool: result.highSchool || {},
+          degreeInfo: result.degreeInfo || {},
           education: result.education || [],
           work: result.work || [],
           projects: result.projects || [],
+          relatives: result.relatives || [],
           languages: result.languages || '',
           certificates: result.certificates || '',
           skills: result.skills || '',

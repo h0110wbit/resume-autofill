@@ -339,7 +339,9 @@ async function handleFillForm(fields, profile) {
 4. 只有当用户简历中确实存在对应信息时才填充该字段。用户简历中为空的信息（字段缺失、空字符串、空数组），对应页面字段一律跳过，禁止从可选项或上下文推断、编造填充值
 5. 对于有可选项的下拉框：简历值能在可选项中匹配到最接近的选项（含地名模糊匹配，如"湖南长沙"→选项"湖南省"）就返回该选项；匹配不到就返回简历原值，绝不跳过（填充层会自动匹配最接近的选项）
 6. 宁缺毋滥：即使页面字段是必填项，只要用户简历没有对应信息，也要跳过，不要为了填满而填
-7. 只返回 JSON 数组，不要返回任何其他文字或解释`;
+7. "是/否"类单选按钮：简历中对应信息为"是"就填"是"，为"否"就填"否"，值必须与可选项文本完全一致
+8. 省/市/区（籍贯、高考生源地、户口所在地、家庭住址）与高中就读院校的省份/城市是独立的字段，只填对应层级的地名，不要把整个地址塞进单个下拉框
+9. 只返回 JSON 数组，不要返回任何其他文字或解释`;
 
   // 弱字段过滤已在采集端做；这里兜底截断字段上限
   const filtered = fields.slice(0, MAX_FIELDS);
@@ -470,6 +472,56 @@ async function handleParsePDF(pdfText) {
       "description": "项目描述"
     }
   ],
+  "extra": {
+    "nativeProvince": "籍贯-省",
+    "nativeCity": "籍贯-市",
+    "nativeDistrict": "籍贯-区/县",
+    "gaokaoProvince": "高考生源地-省",
+    "gaokaoCity": "高考生源地-市",
+    "gaokaoDistrict": "高考生源地-区/县",
+    "hukouProvince": "户口所在地-省",
+    "hukouCity": "户口所在地-市",
+    "hukouDistrict": "户口所在地-区/县",
+    "homeProvince": "家庭住址-省",
+    "homeCity": "家庭住址-市",
+    "homeDistrict": "家庭住址-区/县",
+    "health": "健康状况"
+  },
+  "educationExtra": {
+    "highestDegree": "最高学历",
+    "educationType": "学历类型(全日制/非全日制等)",
+    "isMain": "教育经历是否主要经历(是/否)",
+    "hasDoubleDegree": "是否双学位(是/否)",
+    "isUpgraded": "是否专升本(是/否)"
+  },
+  "highSchool": {
+    "province": "高中就读院校-省份",
+    "city": "高中就读院校-城市",
+    "school": "高中学校名称",
+    "startDate": "高中入学时间",
+    "endDate": "高中毕业时间",
+    "isMain": "高中是否主要经历(是/否)"
+  },
+  "degreeInfo": {
+    "degree": "学位(如：工学学士)",
+    "degreeType": "学位类型(已毕业/预计毕业)",
+    "school": "学校名称",
+    "schoolLocation": "学校所在地",
+    "college": "学院",
+    "majorLevel1": "主修专业-一级学科",
+    "majorLevel2": "主修专业-二级学科",
+    "majorDirection": "主修专业-专业方向",
+    "isStudentLeader": "是否是学生干部(是/否)"
+  },
+  "relatives": [
+    {
+      "relation": "亲属称谓",
+      "name": "亲属姓名",
+      "isEmployee": "是否为本单位员工(是/否)",
+      "company": "工作单位",
+      "position": "工作职务"
+    }
+  ],
   "languages": "语言能力(换行分隔)",
   "certificates": "资格证书(换行分隔)",
   "skills": "技能列表(换行分隔)",
@@ -486,10 +538,11 @@ async function handleParsePDF(pdfText) {
 
 规则：
 1. 如果某字段在文本中找不到对应信息，值设为空字符串
-2. education、work、projects 是数组，可能有多条记录
+2. education、work、projects、relatives 是数组，可能有多条记录
 3. languages、certificates、skills 是字符串，每项用换行分隔
 4. 日期格式统一为 "YYYY-MM" 或 "YYYY"
-5. 只返回 JSON，不要其他文字`;
+5. "是/否"类字段只返回 "是" 或 "否"；"省/市/区"字段只返回对应层级的地名（如"湖南省"、"长沙市"、"岳麓区"），不要拼接完整地址
+6. 只返回 JSON，不要其他文字`;
 
   const userPrompt = `请解析以下简历文本：\n\n${pdfText}`;
 
